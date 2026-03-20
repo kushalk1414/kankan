@@ -14,4 +14,9 @@ class UserController(private val userService: UserService) {
         return ResponseEntity.ok(userService.addUser(request))
     }
 
+    @PostMapping("/login")
+    fun login(@RequestBody request: AuthRequest): ResponseEntity<AuthResponse> {
+        return ResponseEntity.ok(userService.login(request))
+    }
+
 }
