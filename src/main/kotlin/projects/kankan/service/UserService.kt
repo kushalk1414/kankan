@@ -1,10 +1,10 @@
-package org.example.projects.kankan.service
+package projects.kankan.service
 
-import org.example.projects.kankan.dto.AuthRequest
-import org.example.projects.kankan.dto.AuthResponse
-import org.example.projects.kankan.dto.UserDTO
-import org.example.projects.kankan.model.User
-import org.example.projects.kankan.repository.UserRepository
+import projects.kankan.dto.AuthRequest
+import projects.kankan.dto.AuthResponse
+import projects.kankan.dto.UserDTO
+import projects.kankan.model.User
+import projects.kankan.repository.UserRepository
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.*

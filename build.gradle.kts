@@ -6,7 +6,7 @@ plugins {
     kotlin("plugin.jpa") version "2.2.21"
 }
 
-group = "projects"
+group = "projects.kankan"
 version = "0.0.1-SNAPSHOT"
 
 java {

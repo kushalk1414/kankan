@@ -1,5 +1,9 @@
-package org.example
+package projects.kankan
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.runApplication
 
-fun main() {
-    println("Hello World!")
+@SpringBootApplication
+class KankanServiceApplication
+fun main(args: Array<String>) {
+    runApplication<KankanServiceApplication>(*args)
 }

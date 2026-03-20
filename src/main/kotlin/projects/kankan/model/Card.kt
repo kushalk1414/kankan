@@ -1,4 +1,4 @@
-package org.example.projects.kankan.model
+package projects.kankan.model
 
 import jakarta.persistence.Column
 import jakarta.persistence.GeneratedValue

@@ -1,6 +1,6 @@
-package org.example.projects.kankan.repository
+package projects.kankan.repository
 
-import org.example.projects.kankan.model.User
+import projects.kankan.model.User
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.Optional
 

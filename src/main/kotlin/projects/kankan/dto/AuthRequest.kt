@@ -1,4 +1,4 @@
-package org.example.projects.kankan.dto
+package projects.kankan.dto
 
 data class AuthRequest(
     val email: String,
