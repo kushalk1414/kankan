@@ -1,4 +1,4 @@
-package projects.kankan.projects.kankan.model
+package projects.kankan.model
 
 import jakarta.persistence.*
 import jakarta.persistence.Table

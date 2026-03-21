@@ -1,4 +1,4 @@
-package projects.kankan.projects.kankan.repository
+package projects.kankan.repository
 
 import org.springframework.data.jpa.repository.JpaRepository
 import projects.kankan.model.Card

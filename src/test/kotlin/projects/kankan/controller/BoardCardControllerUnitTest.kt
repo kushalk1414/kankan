@@ -13,10 +13,10 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
-import projects.kankan.projects.kankan.controller.BoardContoller
-import projects.kankan.projects.kankan.dto.BoardRequest
-import projects.kankan.projects.kankan.dto.BoardResponse
-import projects.kankan.projects.kankan.service.BoardService
+import projects.kankan.controller.BoardContoller
+import projects.kankan.dto.BoardRequest
+import projects.kankan.dto.BoardResponse
+import projects.kankan.service.BoardService
 
 @WebMvcTest(BoardContoller::class)
 @AutoConfigureMockMvc

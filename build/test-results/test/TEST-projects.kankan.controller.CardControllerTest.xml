@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="projects.kankan.controller.CardControllerTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2026-03-21T20:28:28.095Z" hostname="S0156639" time="1.382">
+  <properties/>
+  <testcase name="updateCard should return 404 when card to update is not found()" classname="projects.kankan.controller.CardControllerTest" time="1.382">
+    <failure message="jakarta.servlet.ServletException: Request processing failed: projects.kankan.exception.CardNotFoundException: Card with ID `99` not found" type="jakarta.servlet.ServletException">jakarta.servlet.ServletException: Request processing failed: projects.kankan.exception.CardNotFoundException: Card with ID `99` not found
+	at app//org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1008)
+	at app//org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:914)
+	at app//jakarta.servlet.http.HttpServlet.service(HttpServlet.java:650)
+	at app//org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at app//org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
+	at app//jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at app//org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:160)
+	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
+	at app//org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at app//org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at app//org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160)
+	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
+	at app//org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at app//org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at app//org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160)
+	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
+	at app//org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at app//org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at app//org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160)
+	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
+	at app//org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:199)
+	at app//projects.kankan.controller.CardControllerTest.updateCard should return 404 when card to update is not found(CardControllerUnitTest.kt:132)
+Caused by: projects.kankan.exception.CardNotFoundException: Card with ID `99` not found
+	at app//projects.kankan.controller.CardControllerTest.updateCard should return 404 when card to update is not found(CardControllerUnitTest.kt:130)
+</failure>
+  </testcase>
+  <system-out><![CDATA[21:28:25.959 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:28:26.193 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
+21:28:26.195 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:28:26.202 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.4)
+
+2026-03-21T21:28:26.591+01:00  INFO 28909 --- [    Test worker] p.kankan.controller.CardControllerTest   : Starting CardControllerTest using Java 21.0.5 with PID 28909 (started by kkaramch in /home/kkaramch/NAKProjects/kankan)
+2026-03-21T21:28:26.592+01:00  INFO 28909 --- [    Test worker] p.kankan.controller.CardControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-03-21T21:28:28.036+01:00  INFO 28909 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-03-21T21:28:28.037+01:00  INFO 28909 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-03-21T21:28:28.040+01:00  INFO 28909 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-03-21T21:28:28.083+01:00  INFO 28909 --- [    Test worker] p.kankan.controller.CardControllerTest   : Started CardControllerTest in 1.687 seconds (process running for 2.767)
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/home/kkaramch/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.8/f09415827a71be7ed621c7bd02550678f28bc81c/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
