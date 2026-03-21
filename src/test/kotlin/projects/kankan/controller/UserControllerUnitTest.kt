@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus
 import projects.kankan.dto.AuthResponse
 import kotlin.test.assertEquals
 
-class UserControllerTest {
+class UserCardControllerTest {
 
     private lateinit var userService: UserService
     private lateinit var userController: UserController

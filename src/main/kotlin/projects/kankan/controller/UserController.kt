@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody
 class UserController(private val userService: UserService) {
 
     @PostMapping("/register")
-    fun addUser(@RequestBody request: AuthRequest): ResponseEntity<Any> {
-        return ResponseEntity.ok(userService.addUser(request))
-    }
+    fun addUser(@RequestBody request: AuthRequest): ResponseEntity<Any> =
+        ResponseEntity.ok(userService.addUser(request))
 
     @PostMapping("/login")
     fun login(@RequestBody request: AuthRequest): ResponseEntity<Any> {

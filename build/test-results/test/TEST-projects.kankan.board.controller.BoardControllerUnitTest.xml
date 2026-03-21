@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="projects.kankan.board.controller.BoardControllerUnitTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-03-21T10:40:35.344Z" hostname="S0156639" time="0.509">
+  <properties/>
+  <testcase name="should create board()" classname="projects.kankan.board.controller.BoardControllerUnitTest" time="0.509"/>
+  <system-out><![CDATA[11:40:33.109 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.board.controller.BoardControllerUnitTest]: BoardControllerUnitTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:40:33.352 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.board.controller.BoardControllerUnitTest
+11:40:33.355 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.board.controller.BoardControllerUnitTest]: BoardControllerUnitTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+11:40:33.372 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.board.controller.BoardControllerUnitTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.4)
+
+2026-03-21T11:40:33.785+01:00  INFO 22467 --- [    Test worker] p.k.b.c.BoardControllerUnitTest          : Starting BoardControllerUnitTest using Java 21.0.5 with PID 22467 (started by kkaramch in /home/kkaramch/NAKProjects/kankan)
+2026-03-21T11:40:33.786+01:00  INFO 22467 --- [    Test worker] p.k.b.c.BoardControllerUnitTest          : No active profile set, falling back to 1 default profile: "default"
+2026-03-21T11:40:35.299+01:00  INFO 22467 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-03-21T11:40:35.299+01:00  INFO 22467 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-03-21T11:40:35.302+01:00  INFO 22467 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-03-21T11:40:35.334+01:00  INFO 22467 --- [    Test worker] p.k.b.c.BoardControllerUnitTest          : Started BoardControllerUnitTest in 1.766 seconds (process running for 3.036)
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/home/kkaramch/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.8/f09415827a71be7ed621c7bd02550678f28bc81c/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
