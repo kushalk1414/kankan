@@ -1,4 +1,4 @@
-package projects.kankan.projects.kankan.dto
+package projects.kankan.dto
 
 import projects.kankan.model.BoardColumn
 
@@ -7,5 +7,6 @@ data class CardDTO(
     val title: String,
     val description: String?,
     val position: Int = 0,
+    val boardId: Long,
     val column: BoardColumn
 )

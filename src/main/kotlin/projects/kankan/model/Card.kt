@@ -1,10 +1,6 @@
 package projects.kankan.model
 
-import jakarta.persistence.Column
-import jakarta.persistence.Enumerated
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 import projects.kankan.model.BoardColumn
 
@@ -15,7 +11,9 @@ data class Card(
     var title: String,
     var description: String?,
     var position: Int = 0,
-    @Enumerated
+    @Column(name = "board_id", nullable = false) // Foreign key column
+    val boardId: Long,
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     var column: BoardColumn = BoardColumn.TODO
 

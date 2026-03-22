@@ -1,15 +1,44 @@
 package projects.kankan.service
 
 import org.springframework.stereotype.Service
+import projects.kankan.exception.BoardNotFoundException
 import projects.kankan.model.Card
 
 import projects.kankan.exception.CardNotFoundException
-import projects.kankan.projects.kankan.dto.CardDTO
+import projects.kankan.model.Board
+import projects.kankan.model.BoardColumn
+import projects.kankan.dto.CardDTO
+import projects.kankan.repository.BoardRepository
 import projects.kankan.repository.CardRepository
-import java.util.*
 
 @Service
-class CardService(private val cardRepository: CardRepository) {
+class CardService(
+    private val cardRepository: CardRepository,
+    private val boardRepository: BoardRepository
+    ) {
+    private fun validateBoardExists(boardId: Long) {
+        if (!boardRepository.existsById(boardId)) {
+            throw CardNotFoundException("Board with ID `$boardId` not found, cannot perform card operation.")
+        }
+    }
+
+    private fun getBoardAndValidateColumn(boardId: Long, column: BoardColumn): Board {
+        val board = boardRepository.findById(boardId)
+            .orElseThrow { BoardNotFoundException("Board with ID `$boardId` not found.") }
+        if (!board.columns.contains(column)) {
+            throw IllegalArgumentException("Column `$column` is not a valid column for Board with ID `$boardId`.")
+        }
+        return board
+    }
+
+    private fun getCardAndValidateBoard(boardId: Long, cardId: Long): Card{
+        val card = cardRepository.findById(cardId)
+            .orElseThrow { CardNotFoundException("Card with ID `$cardId` not found.") }
+        if (card.boardId != boardId) {
+            throw CardNotFoundException("Card with ID `$cardId` does not belong to Board with ID `$boardId`.")
+        }
+        return card
+    }
 
     fun getAllCards(cardTitle: String?): List<CardDTO> {
         val cards = cardTitle?.let {
@@ -17,39 +46,60 @@ class CardService(private val cardRepository: CardRepository) {
         } ?: cardRepository.findAll()
 
         return cards.map {
-            CardDTO(it.id, it.title, it.description, it.position, it.column)
+            CardDTO(it.id, it.title, it.description, it.position, it.boardId, it.column)
         }
     }
 
-    fun getCardById(id: Long): CardDTO {
-        val card = cardRepository.findById(id)
-
-        return if (card.isPresent) {
-            card.get()
-                .let{
-                    CardDTO(it.id, it.title, it.description, it.position, it.column)
-                }
-        }
-        else throw CardNotFoundException("Card with ID `$id` not found")
-
-
+    fun getCardsByBoardId(boardId: Long): List<CardDTO> {
+        return getCardsByBoardIdAndColumn(boardId, null)
     }
-    fun addCard(cardDTO: CardDTO): CardDTO {
+
+    fun getCardsByBoardIdAndColumn(boardId: Long, column: BoardColumn?): List<CardDTO> {
+        /*validateBoardExists(boardId)*/
+        val cards = if (column != null) {
+            cardRepository.findByBoardIdAndColumn(boardId, column)
+        } else {
+            cardRepository.findCardsByBoardId(boardId)
+        }
+        return cards.map {
+            CardDTO(it.id, it.title, it.description, it.position, it.boardId, it.column)
+        }
+    }
+
+    fun getCardById(boardId: Long, cardId: Long): CardDTO {
+        val card = getCardAndValidateBoard(boardId, cardId)
+        return card.let {
+            CardDTO(it.id, it.title, it.description, it.position, it.boardId, it.column)
+        }
+    }
+
+    fun addCard(boardId: Long, cardDTO: CardDTO): CardDTO {
+        getBoardAndValidateColumn(boardId, cardDTO.column)
+        if (cardDTO.boardId != boardId) {
+            throw IllegalArgumentException("Card DTO boardId (`${cardDTO.boardId}`) must match path boardId (`$boardId`).")
+        }
         val card = cardDTO.let {
-            Card(null, it.title, it.description)
+            val card = Card(null, it.title, it.description, it.position, it.boardId)
+            card
         }
         cardRepository.save(card)
 
         return card.let {
-            CardDTO(it.id, it.title, it.description, it.position, it.column)
+            CardDTO(it.id, it.title, it.description, it.position, it.boardId, it.column)
         }
     }
 
-    fun updateCard(id: Long, updatedCardDTO: CardDTO): CardDTO {
-        val existingCard: Optional<Card> = cardRepository.findById(id)
+    fun updateCard(cardId: Long, boardId: Long, updatedCardDTO: CardDTO): CardDTO {
+        getBoardAndValidateColumn(boardId, updatedCardDTO.column)
+        val existingCard = getCardAndValidateBoard(boardId, cardId)
 
-        return if (existingCard.isPresent){
-            existingCard.get()
+        if (updatedCardDTO.boardId != boardId || updatedCardDTO.boardId != existingCard.boardId) {
+            throw IllegalArgumentException("Card DTO boardId (`${updatedCardDTO.boardId}`) " +
+                    "must match existing card's boardId (`${existingCard.boardId}`) and path boardId (`$boardId`)." +
+                    " Card cannot be moved between boards via this endpoint.")
+        }
+
+        return existingCard
                 .let {
                     it.title = updatedCardDTO.title
                     it.description = updatedCardDTO.description
@@ -58,17 +108,12 @@ class CardService(private val cardRepository: CardRepository) {
 
                     cardRepository.save(it)
 
-                    CardDTO(it.id, it.title, it.description, it.position, it.column)
-                }
-        } else {
-            throw CardNotFoundException("Card with ID `$id` not found")
+                    CardDTO(it.id, it.title, it.description, it.position, it.boardId, it.column)
+            }
         }
-    }
 
-    fun deleteCard(id: Long) {
-        if (!cardRepository.existsById(id)) {
-            throw CardNotFoundException("Card with ID `$id` not found")
-        }
-        cardRepository.deleteById(id)
+    fun deleteCard(cardId: Long, boardId: Long) {
+        val existingCard = getCardAndValidateBoard(boardId, cardId)
+        cardRepository.delete(existingCard)
     }
 }

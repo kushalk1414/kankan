@@ -1,4 +1,4 @@
-package projects.kankan.projects.kankan.dto
+package projects.kankan.dto
 
 import projects.kankan.model.BoardColumn
 

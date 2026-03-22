@@ -8,8 +8,8 @@ import jakarta.persistence.Table
 data class Board (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
-    val title: String,
+    val id: Long?,
+    var title: String,
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(

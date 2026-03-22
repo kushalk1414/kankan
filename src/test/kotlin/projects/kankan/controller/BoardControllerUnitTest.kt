@@ -14,13 +14,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 
 import projects.kankan.controller.BoardContoller
-import projects.kankan.dto.BoardRequest
-import projects.kankan.dto.BoardResponse
+import projects.kankan.dto.BoardDTO
 import projects.kankan.service.BoardService
 
 @WebMvcTest(BoardContoller::class)
 @AutoConfigureMockMvc
-class BoardCardControllerUnitTest {
+class BoardControllerUnitTest {
 
     @Autowired
     lateinit var mockMvc: MockMvc
@@ -32,17 +31,17 @@ class BoardCardControllerUnitTest {
 
     @Test
     fun `should create board`() {
-        val request = BoardRequest(title = "My First Board")
-        val response = BoardResponse(id = 1, title = "My First Board")
+        val boardDTO = BoardDTO(null, title = "My First Board")
+        val createdBoardDTO = BoardDTO(id = 1, title = "My First Board")
 
-        every { boardService.createBoard(any()) } returns response
+        every { boardService.addBoard(any()) } returns createdBoardDTO
 
         mockMvc.perform(
             post("/boards")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(request))
+                .content(objectMapper.writeValueAsString(boardDTO))
         )
-            .andExpect(status().isOk)
+            .andExpect(status().isCreated)
             .andExpect(jsonPath("$.id").value(1))
             .andExpect(jsonPath("$.title").value("My First Board"))
     }

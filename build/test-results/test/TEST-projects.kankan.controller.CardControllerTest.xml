@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="projects.kankan.controller.CardControllerTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-03-22T14:45:40.917Z" hostname="S0156639" time="1.835">
+<testsuite name="projects.kankan.controller.CardControllerTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-03-22T19:04:24.650Z" hostname="S0156639" time="2.437">
   <properties/>
-  <testcase name="updateCard should return 404 when card to update is not found()" classname="projects.kankan.controller.CardControllerTest" time="1.22"/>
-  <testcase name="deleteCard should return 404 when card to delete is not found()" classname="projects.kankan.controller.CardControllerTest" time="0.046"/>
-  <testcase name="addCard should create a new card()" classname="projects.kankan.controller.CardControllerTest" time="0.345"/>
-  <testcase name="deleteCard should delete a card successfully()" classname="projects.kankan.controller.CardControllerTest" time="0.018"/>
-  <testcase name="getCardById should return 404 when card not found()" classname="projects.kankan.controller.CardControllerTest" time="0.032"/>
-  <testcase name="getCardById should return a card when found()" classname="projects.kankan.controller.CardControllerTest" time="0.027"/>
-  <testcase name="getAllCards should return a list of cards()" classname="projects.kankan.controller.CardControllerTest" time="0.066"/>
-  <testcase name="updateCard should update an existing card()" classname="projects.kankan.controller.CardControllerTest" time="0.029"/>
-  <system-out><![CDATA[15:45:37.158 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-15:45:37.397 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
-15:45:37.399 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-15:45:37.408 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
+  <testcase name="getCardsByBoardId with column filter should return filtered cards()" classname="projects.kankan.controller.CardControllerTest" time="1.829"/>
+  <testcase name="getCardsByBoardId should return a list of cards()" classname="projects.kankan.controller.CardControllerTest" time="0.039"/>
+  <testcase name="updateCardInBoard should update an existing card()" classname="projects.kankan.controller.CardControllerTest" time="0.385"/>
+  <testcase name="getCardById should return a card when found()" classname="projects.kankan.controller.CardControllerTest" time="0.042"/>
+  <testcase name="deleteCardFromBoard should delete a card successfully()" classname="projects.kankan.controller.CardControllerTest" time="0.055"/>
+  <testcase name="addCardToBoard should create a new card()" classname="projects.kankan.controller.CardControllerTest" time="0.038"/>
+  <system-out><![CDATA[20:04:19.165 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:04:19.645 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
+20:04:19.649 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:04:19.662 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -23,13 +21,12 @@
 
  :: Spring Boot ::                (v4.0.4)
 
-2026-03-22T15:45:37.852+01:00  INFO 33954 --- [    Test worker] p.kankan.controller.CardControllerTest   : Starting CardControllerTest using Java 21.0.5 with PID 33954 (started by kkaramch in /home/kkaramch/NAKProjects/kankan)
-2026-03-22T15:45:37.853+01:00  INFO 33954 --- [    Test worker] p.kankan.controller.CardControllerTest   : No active profile set, falling back to 1 default profile: "default"
-2026-03-22T15:45:40.756+01:00  INFO 33954 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2026-03-22T15:45:40.757+01:00  INFO 33954 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-03-22T15:45:40.766+01:00  INFO 33954 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
-2026-03-22T15:45:40.890+01:00  INFO 33954 --- [    Test worker] p.kankan.controller.CardControllerTest   : Started CardControllerTest in 3.251 seconds (process running for 4.486)
-CardDTO(id=1, title=Updated Task, description=New description, position=1, column=IN_PROGRESS)
+2026-03-22T20:04:20.512+01:00  INFO 37310 --- [    Test worker] p.kankan.controller.CardControllerTest   : Starting CardControllerTest using Java 21.0.5 with PID 37310 (started by kkaramch in /home/kkaramch/NAKProjects/kankan)
+2026-03-22T20:04:20.514+01:00  INFO 37310 --- [    Test worker] p.kankan.controller.CardControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2026-03-22T20:04:24.386+01:00  INFO 37310 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-03-22T20:04:24.389+01:00  INFO 37310 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-03-22T20:04:24.408+01:00  INFO 37310 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 12 ms
+2026-03-22T20:04:24.587+01:00  INFO 37310 --- [    Test worker] p.kankan.controller.CardControllerTest   : Started CardControllerTest in 4.51 seconds (process running for 6.302)
 ]]></system-out>
   <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/home/kkaramch/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.17.8/f09415827a71be7ed621c7bd02550678f28bc81c/byte-buddy-agent-1.17.8.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning

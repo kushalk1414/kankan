@@ -4,42 +4,47 @@ import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import projects.kankan.model.Card
-import projects.kankan.projects.kankan.dto.CardDTO
+import projects.kankan.model.BoardColumn
+import projects.kankan.dto.CardDTO
 import projects.kankan.service.CardService
 
 @RestController
-@RequestMapping("/cards")
+@RequestMapping("boards/{boardId}/cards")
 class CardController(private val cardService: CardService) {
 
     @GetMapping
-    fun getAllCards(@RequestParam("card_title") cardTitle : String?): ResponseEntity<List<CardDTO>> {
-        val cards = cardService.getAllCards(cardTitle)
+    fun getCardsByBoardId(
+        @PathVariable boardId: Long,
+        @RequestParam(required = false) column: BoardColumn? // NEW: Optional query parameter for column
+    ): ResponseEntity<List<CardDTO>> {
+        val cards = cardService.getCardsByBoardIdAndColumn(boardId, column)
         return ResponseEntity.ok(cards)
     }
 
-    @GetMapping("/{id}")
-    fun getCardById(@PathVariable id: Long): ResponseEntity<CardDTO> {
-        val card = cardService.getCardById(id)
+    @GetMapping("/{cardId}")
+    fun getCardById(@PathVariable boardId: Long, @PathVariable cardId: Long): ResponseEntity<CardDTO> {
+        val card = cardService.getCardById(boardId, cardId)
         return ResponseEntity.ok(card)
     }
 
     @PostMapping
-    fun addCard(@RequestBody @Valid cardDTO: CardDTO): ResponseEntity<CardDTO> {
-        val newCard = cardService.addCard(cardDTO)
+    fun addCardToBoard(@PathVariable boardId: Long, @RequestBody cardDTO: CardDTO): ResponseEntity<CardDTO> {
+        val cardToCreate = cardDTO.copy(boardId = boardId)
+        val newCard: CardDTO = cardService.addCard(boardId, cardToCreate)
         return ResponseEntity(newCard, HttpStatus.CREATED)
     }
 
-    @PutMapping("/{id}")
-    fun updateCard(@PathVariable id: Long, @RequestBody cardDTO: CardDTO): ResponseEntity<CardDTO> {
-        val updatedCard = cardService.updateCard(id, cardDTO)
-        println(updatedCard)
+    @PutMapping("/{cardId}")
+    fun updateCardInBoard(@PathVariable boardId: Long, @PathVariable cardId: Long, @RequestBody cardDTO: CardDTO): ResponseEntity<CardDTO> {
+        val cardToUpdate = cardDTO.copy(id = cardId, boardId = boardId)
+        val updatedCard = cardService.updateCard(boardId, cardId, cardToUpdate)
         return ResponseEntity.ok(updatedCard)
     }
 
-    @DeleteMapping("/{id}")
-    fun deleteCard(@PathVariable id: Long): ResponseEntity<Void> { // Changed return type to ResponseEntity<Void>
-        cardService.deleteCard(id)
-        return ResponseEntity.noContent().build() // Explicitly return 204 for a successful deletion
+    @DeleteMapping("/{cardId}") // Added DELETE endpoint
+    fun deleteCardFromBoard(@PathVariable boardId: Long, @PathVariable cardId: Long): ResponseEntity<Void> {
+        cardService.deleteCard(boardId, cardId)
+        return ResponseEntity.noContent().build()
     }
+
 }

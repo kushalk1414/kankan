@@ -1,9 +1,9 @@
-package projects.kankan.projects.kankan.mappers
+package projects.kankan.mappers
 
 import projects.kankan.model.Board
 import projects.kankan.model.Card
-import projects.kankan.projects.kankan.dto.BoardDTO
-import projects.kankan.projects.kankan.dto.CardDTO
+import projects.kankan.dto.BoardDTO
+import projects.kankan.dto.CardDTO
 
 class Mappers {
     fun Card.toDTO(): CardDTO  = CardDTO(
@@ -11,6 +11,7 @@ class Mappers {
         title,
         description,
         position,
+        boardId,
         column
     )
 
@@ -20,6 +21,7 @@ class Mappers {
             title,
             description,
             position,
+            boardId,
             column
         )
     }

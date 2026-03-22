@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">8</div>
+<div class="counter">6</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.783s</div>
+<div class="counter">2.388s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,43 +81,33 @@
 </tr>
 </thead>
 <tr>
-<td class="success">addCard should create a new card()</td>
-<td class="success">0.345s</td>
+<td class="success">addCardToBoard should create a new card()</td>
+<td class="success">0.038s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">deleteCard should delete a card successfully()</td>
-<td class="success">0.018s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">deleteCard should return 404 when card to delete is not found()</td>
-<td class="success">0.046s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">getAllCards should return a list of cards()</td>
-<td class="success">0.066s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">getCardById should return 404 when card not found()</td>
-<td class="success">0.032s</td>
+<td class="success">deleteCardFromBoard should delete a card successfully()</td>
+<td class="success">0.055s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getCardById should return a card when found()</td>
-<td class="success">0.027s</td>
+<td class="success">0.042s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">updateCard should return 404 when card to update is not found()</td>
-<td class="success">1.220s</td>
+<td class="success">getCardsByBoardId should return a list of cards()</td>
+<td class="success">0.039s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">updateCard should update an existing card()</td>
-<td class="success">0.029s</td>
+<td class="success">getCardsByBoardId with column filter should return filtered cards()</td>
+<td class="success">1.829s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">updateCardInBoard should update an existing card()</td>
+<td class="success">0.385s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -125,10 +115,10 @@
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>15:45:37.158 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-15:45:37.397 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
-15:45:37.399 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-15:45:37.408 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
+<pre>20:04:19.165 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:04:19.645 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
+20:04:19.649 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:04:19.662 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -139,13 +129,12 @@
 
  :: Spring Boot ::                (v4.0.4)
 
-2026-03-22T15:45:37.852+01:00  INFO 33954 --- [    Test worker] p.kankan.controller.CardControllerTest   : Starting CardControllerTest using Java 21.0.5 with PID 33954 (started by kkaramch in /home/kkaramch/NAKProjects/kankan)
-2026-03-22T15:45:37.853+01:00  INFO 33954 --- [    Test worker] p.kankan.controller.CardControllerTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2026-03-22T15:45:40.756+01:00  INFO 33954 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2026-03-22T15:45:40.757+01:00  INFO 33954 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-03-22T15:45:40.766+01:00  INFO 33954 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
-2026-03-22T15:45:40.890+01:00  INFO 33954 --- [    Test worker] p.kankan.controller.CardControllerTest   : Started CardControllerTest in 3.251 seconds (process running for 4.486)
-CardDTO(id=1, title=Updated Task, description=New description, position=1, column=IN_PROGRESS)
+2026-03-22T20:04:20.512+01:00  INFO 37310 --- [    Test worker] p.kankan.controller.CardControllerTest   : Starting CardControllerTest using Java 21.0.5 with PID 37310 (started by kkaramch in /home/kkaramch/NAKProjects/kankan)
+2026-03-22T20:04:20.514+01:00  INFO 37310 --- [    Test worker] p.kankan.controller.CardControllerTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2026-03-22T20:04:24.386+01:00  INFO 37310 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-03-22T20:04:24.389+01:00  INFO 37310 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-03-22T20:04:24.408+01:00  INFO 37310 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 12 ms
+2026-03-22T20:04:24.587+01:00  INFO 37310 --- [    Test worker] p.kankan.controller.CardControllerTest   : Started CardControllerTest in 4.51 seconds (process running for 6.302)
 </pre>
 </span>
 </div>
@@ -167,7 +156,7 @@ WARNING: Dynamic loading of agents will be disallowed by default in a future rel
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.14</a> at Mar 22, 2026, 3:45:42 PM</p>
+<a href="https://www.gradle.org">Gradle 8.14</a> at Mar 22, 2026, 8:04:27 PM</p>
 </div>
 </div>
 </body>

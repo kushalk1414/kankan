@@ -5,3 +5,6 @@ import org.springframework.web.bind.annotation.ResponseStatus
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 class CardNotFoundException(message: String) : RuntimeException(message)
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
+class BoardNotFoundException(message: String) : RuntimeException(message)
