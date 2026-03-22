@@ -4,31 +4,61 @@ import org.springframework.stereotype.Service
 import projects.kankan.model.Card
 
 import projects.kankan.exception.CardNotFoundException
+import projects.kankan.projects.kankan.dto.CardDTO
 import projects.kankan.repository.CardRepository
 import java.util.*
 
 @Service
 class CardService(private val cardRepository: CardRepository) {
 
-    fun getAllCards(): List<Card> = cardRepository.findAll()
+    fun getAllCards(cardTitle: String?): List<CardDTO> {
+        val cards = cardTitle?.let {
+            cardRepository.findCardsByTitle((cardTitle))
+        } ?: cardRepository.findAll()
 
-    fun getCardById(id: Long): Card = cardRepository.findById(id)
-        .orElseThrow {CardNotFoundException("Card with ID `$id` not found")}
+        return cards.map {
+            CardDTO(it.id, it.title, it.description, it.position, it.column)
+        }
+    }
 
-    fun addCard(card: Card): Card = cardRepository.save(card)
+    fun getCardById(id: Long): CardDTO {
+        val card = cardRepository.findById(id)
 
-    fun updateCard(id: Long, updatedCard: Card): Card {
+        return if (card.isPresent) {
+            card.get()
+                .let{
+                    CardDTO(it.id, it.title, it.description, it.position, it.column)
+                }
+        }
+        else throw CardNotFoundException("Card with ID `$id` not found")
+
+
+    }
+    fun addCard(cardDTO: CardDTO): CardDTO {
+        val card = cardDTO.let {
+            Card(null, it.title, it.description)
+        }
+        cardRepository.save(card)
+
+        return card.let {
+            CardDTO(it.id, it.title, it.description, it.position, it.column)
+        }
+    }
+
+    fun updateCard(id: Long, updatedCardDTO: CardDTO): CardDTO {
         val existingCard: Optional<Card> = cardRepository.findById(id)
 
         return if (existingCard.isPresent){
             existingCard.get()
                 .let {
-                    it.title = updatedCard.title
-                    it.description = updatedCard.description
-                    it.position = updatedCard.position
-                    it.column = updatedCard.column
+                    it.title = updatedCardDTO.title
+                    it.description = updatedCardDTO.description
+                    it.position = updatedCardDTO.position
+                    it.column = updatedCardDTO.column
 
                     cardRepository.save(it)
+
+                    CardDTO(it.id, it.title, it.description, it.position, it.column)
                 }
         } else {
             throw CardNotFoundException("Card with ID `$id` not found")

@@ -11,7 +11,7 @@ import projects.kankan.model.BoardColumn
 data class Card(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    val id: Long?,
     var title: String,
     var description: String?,
     var position: Int = 0,

@@ -23,13 +23,13 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">1</div>
+<div class="counter">8</div>
 <p>tests</p>
 </div>
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">1</div>
+<div class="counter">0</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.382s</div>
+<div class="counter">1.783s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox failures" id="successRate">
-<div class="percent">0%</div>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
 <p>successful</p>
 </div>
 </td>
@@ -60,9 +60,6 @@
 </div>
 <div class="tab-container">
 <ul class="tabLinks">
-<li>
-<a href="#">Failed tests</a>
-</li>
 <li>
 <a href="#">Tests</a>
 </li>
@@ -74,41 +71,6 @@
 </li>
 </ul>
 <div class="tab">
-<h2>Failed tests</h2>
-<div class="test">
-<a name="updateCard should return 404 when card to update is not found()"></a>
-<h3 class="failures">updateCard should return 404 when card to update is not found()</h3>
-<span class="code">
-<pre>jakarta.servlet.ServletException: Request processing failed: projects.kankan.exception.CardNotFoundException: Card with ID `99` not found
-	at app//org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1008)
-	at app//org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:914)
-	at app//jakarta.servlet.http.HttpServlet.service(HttpServlet.java:650)
-	at app//org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
-	at app//org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72)
-	at app//jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
-	at app//org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:160)
-	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
-	at app//org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at app//org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at app//org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160)
-	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
-	at app//org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at app//org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at app//org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160)
-	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
-	at app//org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
-	at app//org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at app//org.springframework.test.web.servlet.setup.MockMvcFilterDecorator.doFilter(MockMvcFilterDecorator.java:160)
-	at app//org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:127)
-	at app//org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:199)
-	at app//projects.kankan.controller.CardControllerTest.updateCard should return 404 when card to update is not found(CardControllerUnitTest.kt:132)
-Caused by: projects.kankan.exception.CardNotFoundException: Card with ID `99` not found
-	at app//projects.kankan.controller.CardControllerTest.updateCard should return 404 when card to update is not found(CardControllerUnitTest.kt:130)
-</pre>
-</span>
-</div>
-</div>
-<div class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -119,19 +81,54 @@ Caused by: projects.kankan.exception.CardNotFoundException: Card with ID `99` no
 </tr>
 </thead>
 <tr>
-<td class="failures">updateCard should return 404 when card to update is not found()</td>
-<td class="failures">1.382s</td>
-<td class="failures">failed</td>
+<td class="success">addCard should create a new card()</td>
+<td class="success">0.345s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">deleteCard should delete a card successfully()</td>
+<td class="success">0.018s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">deleteCard should return 404 when card to delete is not found()</td>
+<td class="success">0.046s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getAllCards should return a list of cards()</td>
+<td class="success">0.066s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getCardById should return 404 when card not found()</td>
+<td class="success">0.032s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getCardById should return a card when found()</td>
+<td class="success">0.027s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">updateCard should return 404 when card to update is not found()</td>
+<td class="success">1.220s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">updateCard should update an existing card()</td>
+<td class="success">0.029s</td>
+<td class="success">passed</td>
 </tr>
 </table>
 </div>
 <div class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>21:28:25.959 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-21:28:26.193 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
-21:28:26.195 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-21:28:26.202 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
+<pre>15:45:37.158 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:45:37.397 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
+15:45:37.399 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [projects.kankan.controller.CardControllerTest]: CardControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:45:37.408 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration projects.kankan.KankanServiceApplication for test class projects.kankan.controller.CardControllerTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -142,12 +139,13 @@ Caused by: projects.kankan.exception.CardNotFoundException: Card with ID `99` no
 
  :: Spring Boot ::                (v4.0.4)
 
-2026-03-21T21:28:26.591+01:00  INFO 28909 --- [    Test worker] p.kankan.controller.CardControllerTest   : Starting CardControllerTest using Java 21.0.5 with PID 28909 (started by kkaramch in /home/kkaramch/NAKProjects/kankan)
-2026-03-21T21:28:26.592+01:00  INFO 28909 --- [    Test worker] p.kankan.controller.CardControllerTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2026-03-21T21:28:28.036+01:00  INFO 28909 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2026-03-21T21:28:28.037+01:00  INFO 28909 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2026-03-21T21:28:28.040+01:00  INFO 28909 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
-2026-03-21T21:28:28.083+01:00  INFO 28909 --- [    Test worker] p.kankan.controller.CardControllerTest   : Started CardControllerTest in 1.687 seconds (process running for 2.767)
+2026-03-22T15:45:37.852+01:00  INFO 33954 --- [    Test worker] p.kankan.controller.CardControllerTest   : Starting CardControllerTest using Java 21.0.5 with PID 33954 (started by kkaramch in /home/kkaramch/NAKProjects/kankan)
+2026-03-22T15:45:37.853+01:00  INFO 33954 --- [    Test worker] p.kankan.controller.CardControllerTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2026-03-22T15:45:40.756+01:00  INFO 33954 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-03-22T15:45:40.757+01:00  INFO 33954 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-03-22T15:45:40.766+01:00  INFO 33954 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 6 ms
+2026-03-22T15:45:40.890+01:00  INFO 33954 --- [    Test worker] p.kankan.controller.CardControllerTest   : Started CardControllerTest in 3.251 seconds (process running for 4.486)
+CardDTO(id=1, title=Updated Task, description=New description, position=1, column=IN_PROGRESS)
 </pre>
 </span>
 </div>
@@ -169,7 +167,7 @@ WARNING: Dynamic loading of agents will be disallowed by default in a future rel
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="https://www.gradle.org">Gradle 8.14</a> at Mar 21, 2026, 9:28:29 PM</p>
+<a href="https://www.gradle.org">Gradle 8.14</a> at Mar 22, 2026, 3:45:42 PM</p>
 </div>
 </div>
 </body>

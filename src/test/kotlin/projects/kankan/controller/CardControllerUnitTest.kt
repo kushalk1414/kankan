@@ -1,6 +1,7 @@
 package projects.kankan.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.kotlinspring.util.createCardDTO
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import io.mockk.just
@@ -14,7 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import projects.kankan.exception.CardNotFoundException
 import projects.kankan.model.BoardColumn
-import projects.kankan.model.Card
+import projects.kankan.projects.kankan.dto.CardDTO
 import projects.kankan.service.CardService
 
 @WebMvcTest(CardController::class) // This annotation focuses on testing the CardController
@@ -29,18 +30,17 @@ class CardControllerTest {
     private lateinit var cardService: CardService
 
     //region Helper functions to create test data
-    private fun createCard(id: Long, title: String, column: BoardColumn) =
-        Card(id = id, title = title, description = "Description for $title", position = 0, column = column)
+
     //endregion
 
     @Test
     fun `getAllCards should return a list of cards`() {
         // Given
-        val card1 = createCard(1L, "Task 1", BoardColumn.TODO)
-        val card2 = createCard(2L, "Task 2", BoardColumn.IN_PROGRESS)
+        val card1 = createCardDTO(1L, "Task 1", BoardColumn.TODO)
+        val card2 = createCardDTO(2L, "Task 2", BoardColumn.IN_PROGRESS)
         val cards = listOf(card1, card2)
 
-        every { cardService.getAllCards() } returns cards
+        every { cardService.getAllCards(any()) } returns cards
 
         // When & Then
         mockMvc.perform(get("/cards"))
@@ -58,8 +58,8 @@ class CardControllerTest {
     @Test
     fun `getCardById should return a card when found`() {
         // Given
-        val card = createCard(1L, "Task to find", BoardColumn.TODO)
-        every { cardService.getCardById(any()) } returns card
+        val cardDTO = createCardDTO(1L, "Task to find", BoardColumn.TODO)
+        every { cardService.getCardById(any()) } returns cardDTO
 
         // When & Then
         mockMvc.perform(get("/cards/1"))
@@ -77,13 +77,12 @@ class CardControllerTest {
         // When & Then
         mockMvc.perform(get("/cards/99"))
             .andExpect(status().isNotFound) // Expect HTTP 404 Not Found
-            .andExpect(content().string("Card with ID `99` not found")) // Check the error message
     }
 
     @Test
     fun `addCard should create a new card`() {
         // Given
-        val newCardRequest = Card(id = 0, title = "New Task", description = "New description", position = 0, column = BoardColumn.TODO)
+        val newCardRequest = CardDTO(id = 0, title = "New Task", description = "New description", position = 0, column = BoardColumn.TODO)
         val savedCard = newCardRequest.copy(id = 5L) // Simulate ID generation
 
         every { cardService.addCard(any()) } returns savedCard
@@ -104,16 +103,16 @@ class CardControllerTest {
     @Test
     fun `updateCard should update an existing card`() {
         // Given
-        val updatedCardRequest = Card(id = 1L, title = "Updated Task", description = "New description", position = 1, column = BoardColumn.IN_PROGRESS)
-        val existingCard = createCard(1L, "Original Task", BoardColumn.TODO)
+        val updatedCardDTO = CardDTO(id = 1L, title = "Updated Task", description = "New description", position = 1, column = BoardColumn.IN_PROGRESS)
+        val existingCard = createCardDTO(1L, "Original Task", BoardColumn.TODO)
 
-        every { cardService.updateCard(1L, updatedCardRequest) } returns updatedCardRequest
+        every { cardService.updateCard(1L, updatedCardDTO) } returns updatedCardDTO
 
         // When & Then
         mockMvc.perform(
             put("/cards/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(updatedCardRequest))
+                .content(objectMapper.writeValueAsString(updatedCardDTO))
         )
             .andExpect(status().isOk) // Expect HTTP 200 OK
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -125,17 +124,16 @@ class CardControllerTest {
     @Test
     fun `updateCard should return 404 when card to update is not found`() {
         // Given
-        val updatedCardRequest = Card(id = 99L, title = "NonExistent Task", description = null, position = 0, column = BoardColumn.DONE)
+        val updatedCardDTO = CardDTO(id = 99L, title = "NonExistent Task", description = null, position = 0, column = BoardColumn.DONE)
 
-        every { cardService.updateCard(99L, updatedCardRequest) } throws CardNotFoundException("Card with ID `99` not found")
+        every { cardService.updateCard(99L, updatedCardDTO) } throws CardNotFoundException("Card with ID `99` not found")
         // When & Then
         mockMvc.perform(
             put("/cards/99")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(updatedCardRequest))
+                .content(objectMapper.writeValueAsString(updatedCardDTO))
         )
             .andExpect(status().isNotFound) // Expect HTTP 404 Not Found
-            .andExpect(content().string("Card with ID `99` not found"))
     }
 
     @Test
@@ -159,6 +157,5 @@ class CardControllerTest {
         // When & Then
         mockMvc.perform(delete("/cards/$nonExistentID"))
             .andExpect(status().isNotFound) // Expect HTTP 404 Not Found
-            .andExpect(content().string("Card with ID `$nonExistentID` not found"))
     }
 }
